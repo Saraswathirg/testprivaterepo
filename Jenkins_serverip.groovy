@@ -44,7 +44,7 @@ pipeline{
 
                 for (ip in ${SERVER_IP}){
                     sh "
-                       scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${ip}:/var/lib/tomcat/webapps/
+                       scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@'${ip}':/var/lib/tomcat/webapps/
                   "}
             }
         }
