@@ -47,6 +47,7 @@ pipeline{
                     for (a in [1])
                     {                  
                         sh """
+                            echo ${SERVER_IP}
                             echo $a
                            """
                     }
