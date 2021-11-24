@@ -43,8 +43,8 @@ pipeline{
                                 //scp -o StrictHostKeychecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${SERVER_IP}:/var/lib/tomcat/webapps/"""
 
                   sh """
-                    def ipValues = ${SERVER_IP}.split(",")                    
-                    for ipValue in ipValues
+                    //def ipValues = ${SERVER_IP}.split(",")                    
+                    for ipValue in 1 2 3 4
                     do
                     echo $ipValue
                      //scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ipValue:/var/lib/tomcat/webapps/
