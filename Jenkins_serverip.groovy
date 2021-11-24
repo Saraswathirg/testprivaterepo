@@ -54,9 +54,10 @@ pipeline{
                     sh """
                     for val in [1,2,3]
                     do
-                        echo "val"
+                        echo 'val'
                         echo ${val}
-                        echo "$val"
+                        echo '${val}'
+                        echo '$val'
                         
                     done
                     """
