@@ -2,6 +2,8 @@ pipeline{
     agent any
     parameters{
         string(name:'BRANCH',defaultValue:'master',description:'add the branch')
+        string(name:'BUILD_NUMBER',defaultValue:'',description:'add the bUILD NUM')
+        string(name:'SERVER_IP',defaultValue:'',description:'add the serverip')
     }
     stages{
         stage("clone the code"){
@@ -30,11 +32,16 @@ pipeline{
         stage("download to present location"){
             steps{
                 println "the artefact downloaded"
+                sh """
+                aws s3 ls
+                aws s3 cp s3://alltime/${BRANCH}/${BUILD_NUMBER}/hello-${BUILD_NUMBER}.war ."""
             }
         }
         stage("copy the artefact"){
             steps{
                 println "the artefact copied"
+                sh """
+                scp -o StrictHostKeychecking=no -i/tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${SERVER_IP}:/var/lib/tomcat/webapps"""
             }
         }
     }
