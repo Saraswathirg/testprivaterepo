@@ -42,11 +42,10 @@ pipeline{
                 println "the artefact copied"
                                 //scp -o StrictHostKeychecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${SERVER_IP}:/var/lib/tomcat/webapps/"""
 
-                sh """
-                for ip in ${SERVER_IP}
-                    do
-                       scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ip:/var/lib/tomcat/webapps/
-                   done"""
+                for (ip in ${SERVER_IP}){
+                    sh "
+                       scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${ip}:/var/lib/tomcat/webapps/
+                  "}
             }
         }
     }
