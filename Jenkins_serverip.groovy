@@ -54,16 +54,15 @@ pipeline{
                 def inputArray = params.SERVER_IP
                 print "Input Array Value "+params.SERVER_IP
                 def ipValues = inputArray.split(",")       
-                print "Input Value "+ipValues             
-                sh """
+                print "Input Value "+ipValues  
+                for (int j=0; j<ipValues.size(); j++){
+                    print "IP Value "+${ipValues[j]}
+                    sh """
+                   scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${ipValues[j]}:/var/lib/tomcat/webapps/
                 
-                echo ${inputArray}
-                IFS=',' read -r -a outputArray <<< '$inputArray'
-                for ip in ${outputArray[]}
-                do
-                    scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ip:/var/lib/tomcat/webapps/
-                done
                 """
+                }           
+                
                 }
         }
         }
