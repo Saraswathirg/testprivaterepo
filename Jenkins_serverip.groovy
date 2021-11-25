@@ -58,7 +58,7 @@ pipeline{
                 for (int j=0; j<ipValues.size(); j++){
                     print "IP Value "+ipValues[j]
                     sh """
-                   scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@ipValues[j]:/var/lib/tomcat/webapps/
+                   scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${ipValues[j]}:/var/lib/tomcat/webapps/
                 
                 """
                 }           
