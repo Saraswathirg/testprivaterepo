@@ -43,7 +43,7 @@ pipeline{
                     sh """
                     inputArray=${SERVER_IP}
                     echo ${inputArray}
-                    IFS=',' read -r -a outputArray <<< "$inputArray"
+                    IFS=',' read -r -a outputArray <<< '${inputArray}'
                     for ip in ${outputArray[]}
                     do
                     echo $ip
