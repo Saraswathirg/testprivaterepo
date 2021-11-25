@@ -51,7 +51,7 @@ pipeline{
                             echo $a
                            """
                     }
-                def inputArray = $SERVER_IP
+                def inputArray = ${params.SERVER_IP}
                 sh """
                 
                 echo ${inputArray}
