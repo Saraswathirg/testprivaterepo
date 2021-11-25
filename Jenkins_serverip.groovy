@@ -51,7 +51,7 @@ pipeline{
                             echo $a
                            """
                     }
-                }
+                
                 sh """
                 def inputArray = ${SERVER_IP}
                 echo ${inputArray}
@@ -61,6 +61,7 @@ pipeline{
                     scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ip:/var/lib/tomcat/webapps/
                 done
                 """
+                }
         }
         }
     }
