@@ -41,16 +41,12 @@ pipeline{
             steps{
                 println "the artefact copied"
                 script{
-                    sh """
-                    outputArray=[]
-                    IFS=',' read -r -a outputArray <<< ${SERVER_IP}
-                    for ip in ${outputArray[]}
-                    do
-                    echo $ip
-                   scp -o StrictHostKeyChecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ip:/var/lib/tomcat/webapps/
-                done
-                """
-            }    
+                    def outputArray=${SERVER_IP}
+                    outputArray.each(){
+                        echo it
+                        scp -o StrictHostKeyChecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@it:/var/lib/tomcat/webapps/
+                    }
+                }
         }
         }
     }
