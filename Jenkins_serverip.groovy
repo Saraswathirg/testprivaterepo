@@ -56,7 +56,7 @@ pipeline{
                 inputArray = ${SERVER_IP}
                 echo ${inputArray}
                 IFS=',' read -r -a outputArray <<< '$inputArray'
-                for ip in ${outputArray[@]}
+                for ip in ${outputArray[]}
                 do
                     scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ip:/var/lib/tomcat/webapps/
                 done
