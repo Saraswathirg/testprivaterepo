@@ -43,15 +43,23 @@ pipeline{
                                 //scp -o StrictHostKeychecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${SERVER_IP}:/var/lib/tomcat/webapps/"""
 //def ipValues = ${SERVER_IP}.split(",")                    
  //scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ipValue:/var/lib/tomcat/webapps/
-                  sh """
-                    
-                    for a in 1 2 3 4
-                    do
-                    echo $a
-                    
-                    done 
-                  """
-            }
+                script{ 
+                    def ipList = $SERVER_IP               
+                    for (a in ipList)
+                    {                  
+                        sh """
+                            echo $a
+                           """
+                    }
+                }
+                sh """
+                IFS=',' read -r -a serversList <<< "${SERVER_IP}"
+                for ip in serversList
+                do
+                    scp -o StrictKeyHostchecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@$ip:/var/lib/tomcat/webapps/
+                done
+                """
+        }
         }
     }
 }
