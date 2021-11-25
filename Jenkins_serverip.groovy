@@ -53,8 +53,8 @@ pipeline{
                     }
                 def inputArray = params.SERVER_IP
                 print "Input Array Value "+params.SERVER_IP
-                def ipValues = $inputArray.split(",")       
-                print "Input Value "+$ipValues             
+                def ipValues = inputArray.split(",")       
+                print "Input Value "+ipValues             
                 sh """
                 
                 echo ${inputArray}
