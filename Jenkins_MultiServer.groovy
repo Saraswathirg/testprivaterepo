@@ -41,7 +41,7 @@ pipeline{
             steps{
                 println "the artefact copied"
                 script{
-                    def outputArray=${SERVER_IP}
+                    def outputArray=params.SERVER_IP
                     outputArray.each(){
                         echo it
                         sh "scp -o StrictHostKeyChecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@it:/var/lib/tomcat/webapps/"
