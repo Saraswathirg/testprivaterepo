@@ -45,7 +45,7 @@ pipeline{
                     def serverList = outputArray.split(",")
                     serverList.each(){
                         echo it
-                        sh "scp -o StrictHostKeyChecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@it:/var/lib/tomcat/webapps/"
+                        sh "scp -o StrictHostKeyChecking=no -i /tmp/awsaws.pem hello-${BUILD_NUMBER}.war ec2-user@${it}:/var/lib/tomcat/webapps/"
                     }
                 }
         }
