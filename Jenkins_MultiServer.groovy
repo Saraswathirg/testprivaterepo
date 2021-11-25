@@ -41,9 +41,7 @@ pipeline{
             steps{
                 println "the artefact copied"
                     sh """
-                    inputArray=${SERVER_IP}
-                    echo ${inputArray}
-                    IFS=',' read -r -a outputArray <<< '${inputArray}'
+                    IFS=',' read -r -a outputArray <<< ${SERVER_IP}
                     for ip in ${outputArray[]}
                     do
                     echo $ip
