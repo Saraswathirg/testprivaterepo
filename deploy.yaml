@@ -5,6 +5,6 @@
   tasks:
     - name: deploy files
       copy: 
-         src : target/hello-*.war
+         src : var/lib/jenkins/workspace/buildanddeploy/target/hello-*.war
          dest : /var/lib/tomcat/webapps
           
