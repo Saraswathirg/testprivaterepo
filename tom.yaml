@@ -12,7 +12,7 @@
       yum:
           name: "{{ item }}"
           state: present
-          loop: 
+      loop: 
              - tomcat-webapps 
              - tomcat-admin-webapps 
              - tomcat-docs-webapp
