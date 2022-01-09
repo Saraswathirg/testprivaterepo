@@ -5,6 +5,6 @@
   tasks:
     - name: deploy files
       copy: 
-         src : var/lib/jenkins/workspace/buildanddeploy/target/hello-*.war
+         src : "{{ item }}"
          dest : /var/lib/tomcat/webapps
-          
+      with_fileglob: "target/hello-*.war"    
