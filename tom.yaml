@@ -1,6 +1,7 @@
 ---
 - name: tom installation
-  hosts: apps
+  hosts: 
+      - localhost
   become: true
   tasks:
     - name: tom install
