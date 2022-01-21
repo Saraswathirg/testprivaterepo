@@ -1,0 +1,24 @@
+---
+- name: tom installation
+  hosts: tom
+  become: true
+  tasks:
+     - name: tomcat insta
+       yum:
+           name: tomcat
+           state: present
+
+     - name: tomcat dependencies
+       yum:
+           name: "{{ item }}"  
+           state: present
+       loop:
+             - tomcat-webapps 
+             - tomcat-admin-webapps 
+             - tomcat-docs-webapp
+             - tomcat-javadoc   
+
+    - name: tomcat restart
+      service: 
+          name: tomcat
+          state: restarted
