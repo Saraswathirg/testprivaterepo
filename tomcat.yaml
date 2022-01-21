@@ -18,7 +18,7 @@
              - tomcat-docs-webapp
              - tomcat-javadoc   
 
-    - name: tomcat restart
-      service: 
-          name: tomcat
-          state: restarted
+     - name: tomcat restart
+       service: 
+           name: tomcat
+           state: restarted
