@@ -31,7 +31,7 @@ pipeline{
         stage("the artifact stored to s3"){
             steps{
                 println "the artifact stored to s3"
-                sh "aws s3 cp /var/lib/jenkins/workspace/deployy/src/main/webapp/target/hello-${BUILDNUM}.war s3://alltime/${BRANCH}/${BUILDNUM}/"
+                sh "aws s3 cp /var/lib/jenkins/workspace/deployy/target/hello-${BUILDNUM}.war s3://alltime/${BRANCH}/${BUILDNUM}/"
             }
 
         }
